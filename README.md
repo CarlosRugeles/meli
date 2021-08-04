@@ -37,9 +37,9 @@ propósito de este proyecto fue creado en Apache
 <br>
 ```
 <Proxy balancer://melibalancer>
-BalancerMember http://127.0.0.1:3000 route=1
-BalancerMember http://127.0.0.1:3001 route=2
-ProxySet lbmethod=bytraffic
+    BalancerMember http://127.0.0.1:3000 route=1
+    BalancerMember http://127.0.0.1:3001 route=2
+    ProxySet lbmethod=bytraffic
 </Proxy>
 
 ProxyRequests Off
@@ -53,7 +53,7 @@ ProxyPassReverse "/" "balancer://melibalancer/"
 El proyecto está corriendo sobre el endpoint **http://104.198.156.226/mutants/** y
 devolverá código 403 en caso de que no sea mutante y un 200 en caso de que sí.
 ##Ejemplo de petición
-![img.png](img.png)
+![img.png](postman-sample.png)
 
 >Nota: Las peticiones se pueden encontrar en el siguiente 
 > [Postman](https://documenter.getpostman.com/view/16798673/TzshHQZz).

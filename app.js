@@ -2,17 +2,17 @@
 
 const fastify = require('fastify')
 const {isMutant}= require("./handlers/mutantsHandler")
-const dnaStorage = require('./services/dnaStorageFactory')
+const {getStats} = require("./handlers/statsHandler")
 function build(opts={}) {
     const app = fastify(opts)
     app.post('/mutants/', (request, reply) =>{
-        const result = isMutant(request.body.dna)
-        const savedResult = dnaStorage().save({dna:request.body.dna, isMutant: result});
-        console.log(savedResult);
         reply
-            .code(result?200:403)
-            .send()
-    })
+            .code(isMutant(request.body.dna)?200:403)
+            .send();
+    });
+    app.get('/stats',(request, reply) =>{
+        return getStats()
+    });
     return app
 }
 

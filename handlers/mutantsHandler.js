@@ -1,3 +1,4 @@
+const dnaStorage = require('../services/dnaStorageFactory')()
 const dnaMatrix = [[]];
 const LEFT_COUNT = 3;
 function setDNAMatrix(dna =[]) {
@@ -81,6 +82,9 @@ const isMutant = (dna =[]) =>{
             mutantCounter += countConsecutiveGenes(i,j);
         }
     }
+    dnaStorage.then(storage =>{
+        storage.save({dna:{dna}, isMutant: mutantCounter>=2})
+    })
     return mutantCounter>=2
 }
 module.exports={

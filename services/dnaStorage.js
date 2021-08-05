@@ -7,11 +7,19 @@ const save = conn => newDna =>{
     const dna = new DNA({
         ...newDna
     });
-    return dna.save
+    DNA.findOneAndUpdate({
+        dna: {"$eq":newDna.dna}
+    },{isMutant: newDna.isMutant},{upsert: true})
+}
+
+const count = conn => async (query) =>{
+    const DNA = conn.model('DNA', dnaSchema, 'dna');
+    return await DNA.find(query).count();
 }
 
 module.exports = conn => {
     return {
-        save: save(conn)
+        save: save(conn),
+        count: count(conn)
     }
 }

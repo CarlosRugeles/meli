@@ -8,7 +8,7 @@ gen mutante o no. Para poder dar respuesta a esto se debe seguir el siguiente cr
 <br>
 ![img.png](rules-sample.png)
 
-#Instalación
+# Instalación
 
 ## Requerimientos
 Para la implementación es necesario tener instalado Node.js, Docker y un servidor

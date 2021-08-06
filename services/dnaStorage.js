@@ -9,7 +9,10 @@ const save = conn => newDna =>{
     });
     DNA.findOneAndUpdate({
         dna: {"$eq":newDna.dna}
-    },{isMutant: newDna.isMutant},{upsert: true})
+    },{isMutant: newDna.isMutant},{upsert: true, new: true}, (err, doc) =>{
+        console.log(err)
+        console.log(doc)
+    })
 }
 
 const count = conn => async (query) =>{

@@ -27,13 +27,13 @@ de construir cualquier contenedor en conjunto con `Dockerfile` dónde se debe ca
 
 Para generar los contenedores se debe ejecutar `docker build -t NOMBRE_DOCKER .`
 <br>
-Una vez los docker han sido creados se deben levantar dos o más instancias con 
+Una vez los contenedores han sido creados se deben levantar dos o más instancias con 
 `docker run -p PORT:PORT -d DOCKER_IMAGE_NAME` utilizando diferentes puertos para 
 cada uno de estas.
 <br>
 
 Por último se debe agregar la configuración de balancer al sitio web que para 
-propósito de este proyecto fue creado en Apache
+propósito de este proyecto fue creado en Apache de la siguiente manera: 
 <br>
 ```
 <Proxy balancer://melibalancer>
@@ -48,12 +48,22 @@ ProxyPass "/" "balancer://melibalancer/"
 ProxyPassReverse "/" "balancer://melibalancer/"
 ```
 
-#API
+# API
 
-El proyecto está corriendo sobre el endpoint **http://104.198.156.226/mutants/** y
-devolverá código 403 en caso de que no sea mutante y un 200 en caso de que sí.
-##Ejemplo de petición
+El proyecto está corriendo sobre el endpoint **http://104.198.156.226/mutants/** y para su ejecución se 
+debe hacer una petición **POST** en formato **JSON** con la cadena **DNA** que se va a verificar. El endpoint
+retornará en caso de ser humano el código `403 Forbidden` y un `200 Http-ok` en caso de ser mutante.
+##Ejemplo de petición POST `/mutants/`
 ![img.png](postman-sample.png)
 
->Nota: Las peticiones se pueden encontrar en el siguiente 
-> [Postman](https://documenter.getpostman.com/view/16798673/TzshHQZz).
+Para ver las estadísticas de los genes mutantes y humanos encontrados se pueden visualizar a través
+del siguiente endpoint **http://104.198.156.226/mutants/** mediante una petición **`GET`** la cual retornará
+un conteo de los genes diferentes encontrados de cada uno (mutante, humano) y una **ratio** entre ellos.
+
+## Ejemplo de petición GET `/stats`
+
+![img.png](postman-stats-sample.png)
+<br>
+
+>Nota: Para ejecutar las peticiones usando Postman puedes entrar a la
+> [documentación de la API](https://documenter.getpostman.com/view/16798673/TzshHQZz).

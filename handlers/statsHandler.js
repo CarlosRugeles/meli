@@ -8,7 +8,7 @@ const getStats = async () => {
     return {
         count_mutant_dna,
         count_human_dna,
-        ratio : (count_mutant_dna) / Math.max(1, count_human_dna)
+        ratio : (count_human_dna) / Math.max(1, count_mutant_dna)
     }
 }
 

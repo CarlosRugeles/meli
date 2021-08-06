@@ -1,10 +1,19 @@
 # Reto de mutantes
+## Descripción
+El objetivo de este proyecto es encontrar de acuerdo a una cadena de DNA dada si es un
+gen mutante o no. Para poder dar respuesta a esto se debe seguir el siguiente criterio: 
+- Si hay más de una secuencia de cuatro letras iguales, de forma oblicua, horizontal o vertical se dice
+  que es un gen mutante de lo contrario es humano.
+<br>
+<br>
+![img.png](rules-sample.png)
+
+#Instalación
 
 ## Requerimientos
-Para la implementación es necesario tener instalado Node.js, Docker y un servidor 
+Para la implementación es necesario tener instalado Node.js, Docker y un servidor
 Apache.
 
-##Instalación
 Para iniciar la instalación de este servicio es necesario ejecutar en la raíz del
 proyecto `npm install`.
 
